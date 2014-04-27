@@ -82,9 +82,7 @@ There are several simulation engines, and tools which leverage those simulation 
 
 As the variance of material properties increase, as the number of different systems, envelopes, equipment, components, and materials become more complicated and diverse, and as energy simulation modeling algorithms evolve to capture new equipment and more thoroughly model existing systems, there will be a growing need to mitigate this increase in complexity by relying on cost-effective, intelligent algorithms to calibrate building energy models in a way that uses as much data as available. The Autotune project \cite{cit:new2012} aims to solve this need with an automated process and has already demonstrated calibration results for envelope parameters using monthly utility data \cite{cit:garrett2013}. This paper extends that work by discussing the scalable methodologies used to tune a building energy model's 100+ envelope parameters to whole-building hourly electrical usage data.
 
-\hl{
-The Autotune project relies on 269+ channels of 15-minute sensor data from a robotically emulated-occupancy ZEBRAlliance \cite{cit:miller2012,cit:biswas2012} 2800 ft$^2$ research home, parametric ensemble simulations from high performance computing (HPC) resources (including the world's fastest, Titan) which have demonstrated use of 131,072 cores to calculate 524,288 simulations and write 44 TB of data to disk in 68 minutes \cite{cit:sanyal2013a}, the latest advances in web-oriented database storage for queryable and publicly-shared simulations of 156 input inputs and 96 outputs at 15-minute resolution (35 MB per simulation) for 8 million EnergyPlus simulations \cite{cit:sanyal2013b}, statistical techniques for autonomous quality assurance and gap-filling in time-series sensor data \cite{cit:castello2012}, extensive data-mining of large data for agent-based encapsulation of knowledge for Autotune deployment on mobile devices using HPC-capable MLSuite \cite{cit:edwards2013}, and EnergyPlus approximation functionality that reduces simulation runtime from ~3 minutes to ~3 seconds with minimal tradeoff in accuracy for the processed building types \cite{cit:edwards2013}. The Autotune project, in an effort to promote open science, is making a portion of the 267 TB (26.9 trillion data points) of EnergyPlus simulation data freely available online\footnote{\url{http://autotune.roofcalc.com}}.
-}
+\hl{The Autotune project} relies on 269+ channels of 15-minute sensor data from a robotically emulated-occupancy ZEBRAlliance \cite{cit:miller2012,cit:biswas2012} 2800 ft$^2$ research home, parametric ensemble simulations from high performance computing (HPC) resources (including the world's second fastest, Titan) which have demonstrated use of 131,072 cores to calculate 524,288 simulations and write 44 TB of data to disk in 68 minutes \cite{cit:sanyal2013a}, the latest advances in web-oriented database storage for queryable and publicly-shared simulations of 156 input inputs and 96 outputs at 15-minute resolution (35 MB per simulation) for 8 million EnergyPlus simulations \cite{cit:sanyal2013b}, statistical techniques for autonomous quality assurance and gap-filling in time-series sensor data \cite{cit:castello2012}, extensive data-mining of large data for agent-based encapsulation of knowledge for Autotune deployment on mobile devices using HPC-capable MLSuite \cite{cit:edwards2013}, and EnergyPlus approximation functionality that reduces simulation runtime from ~3 minutes to ~3 seconds with minimal tradeoff in accuracy for the processed building types \cite{cit:edwards2013}. The Autotune project, in an effort to promote open science, is making a portion of the 267 TB (26.9 trillion data points) of EnergyPlus simulation data freely available online\footnote{\url{http://autotune.roofcalc.com}}.
 
 \section{Background}
 \label{sec:background}
@@ -223,7 +221,7 @@ Data Used & Trial 1 & Trial 2 & Trial 3 & Trial 4\\
 \label{sub:experiment2}
 The abbreviated schedule is desirable since it is significantly less expensive to compute, has been shown an effective surrogate for full-schedule error, and provides a baseline to which other results can be compared and contextualized. In Experiment 2, we tune the refined and primitive models on hourly electrical usage with the abbreviated schedule. 
 
-Table~\ref{tab:hourly-abbrev} presents the final population statistics for full-schedule SAE on each model and trial. In this table, the actual full-schedule data was compared to each of the 16 candidates in the final population for each trial, and the average and minimum SAE values from this comparison are reported. For the refined model, the average minimum yearly SAE achieved by the EC was 5,660 kWh. This corresponds to a reduction of 582 kWh in SAE, which is an almost 10\% reduction from the model, which had an SAE of 6,242 kWh. For the primitive model, the average minimum yearly SAE was 7,453 kWh, which is a reduction of 660 kWh or an 8\% reduction in SAE. This is also a 35\% reduction of the error between the primitive and refined models (,8114 kWh for the primitive and 6,242 kWh for the refined).
+Table~\ref{tab:hourly-abbrev} presents the final population statistics for full-schedule SAE on each model and trial. In this table, the actual full-schedule data was compared to each of the 16 candidates in the final population for each trial, and the average and minimum SAE values from this comparison are reported. For the refined model, the average minimum yearly SAE achieved by the EC was 5,660 kWh. This corresponds to a reduction of 582 kWh in SAE, which is an almost 10\% reduction from the model, which had an SAE of 6,242 kWh. For the primitive model, the average minimum yearly SAE was 7,453 kWh, which is a reduction of 660 kWh or an 8\% reduction in SAE. This is also a 35\% reduction of the error between the primitive and refined models (8,114 kWh for the primitive and 6,242 kWh for the refined).
 
 
 \begin{table}[htbp]
@@ -327,7 +325,7 @@ Refined   & Min & 5639 & 5597 & 5582 & 5578 & 5580 & 5633 & 5591 & 5573\\
 
 
 \section{Summary}
-The results of the previous experiments are summarized in Table~\ref{tab:hourly-summary}. This table shows the baseline and various approaches for tuning for each model, focusing on the SAE and RMSE between the model output and the actual data. The percentages in parentheses are the percent reduction in error from the baseline.
+The results of the previous experiments are summarized in Table~\ref{tab:hourly-summary} and Figure~\ref{fig:hourly-summary}. This table shows the baseline and various approaches for tuning for each model, focusing on the SAE and RMSE between the model output and the actual data. The percentages in parentheses are the percent reduction in error from the baseline.
 
 These experiments have shown that it is possible to use an evolutionary search to reduce the RMSE by over 7\% when comparing hourly electrical usage. They have also shown that a two-island approach is both a feasible and effective way of combining the abbreviated- and full-schedule approaches. 
 
@@ -352,6 +350,12 @@ Parallel    & 5597 (10\%) & 1.121 (7\%) & 7270 (10\%) & 1.482 (9\%)\\
 \end{tabular}
 \end{table}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5in]{figure3}
+\caption{This figure shows the results of Experiments 2--5 when compared to the baseline (see Table~\ref{tab:hourly-summary}). The average minimum SAE value found across all eight trials is used to represent each method, and each method is accompanied by standard error bars (except for the baseline). The y-axis minimum value was increased to 5,000 in order to highlight the differences between the methods.}
+\label{fig:hourly-summary}
+\end{figure}
 
 
 

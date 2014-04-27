@@ -1,0 +1,11 @@
+model,method,n,average,se
+Primitive,Baseline,1,8114,0
+Primitive,Abbreviated,8,7453,32
+Primitive,Full,8,7162,15.4
+Primitive,Serial,8,7343,15.3
+Primitive,Parallel,8,7270,24
+Refined,Baseline,1,6242,0
+Refined,Abbreviated,8,5660,14
+Refined,Full,8,5539,7.8
+Refined,Serial,8,5581,8.9
+Refined,Parallel,8,5597,9
