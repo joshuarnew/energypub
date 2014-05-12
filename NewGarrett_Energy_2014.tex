@@ -194,14 +194,14 @@ An annual EnergyPlus simulation for the WC1 reference building at one-hour time 
 
 The entire set of 1,024 individuals for each of the four trials is plotted in Figure~\ref{fig:hour-corr}. This plot compares the hourly sum of the absolute errors (SAE) between the candidate solutions and the actual energy usage, both for the four-day schedule and the full schedule, for each of the four independent trials. It is clear from the graph that there is a strong linear correlation between the electricity usage with the four-day schedule and that of the full schedule. More precisely, this correlation was 0.9697, 0.9704, 0.9472, and 0.9382 for each of the four trials, respectively. This can be seen in the first row of Table~\ref{tab:hour-corr}, which shows how the correlation changes as the data focuses more on the later generated samples (which would typically have lower SAE). So, as with previous results, the four-day abbreviated schedule appears to be an acceptable surrogate for the full schedule. It is an open, relevant, and interesting question as to which smallest subset of days provides the best correlation to full-schedule error.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=5in]{figure1}
 \caption{Each of the four independent trials show very high correlation between four-day and full-year-schedule SAE of hourly electrical usage. This means that an abbreviated surrogate (four-day schedule) is a plausible method of expediting the tuning.}
 \label{fig:hour-corr}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{The sampling of the SAE to determine correlation was done using an evolutionary computation with the objective of minimizing the SAE. This produced initial samples with relatively high SAE values and subsequent samples with generally lower SAE as more data was used. The correlation using only the first $N$\% of the samples produced shows that even the initial samples have strong correlation most of the time (with the exception of Trial 3).}
 \label{tab:hour-corr}
@@ -226,12 +226,12 @@ Data Used & Trial 1 & Trial 2 & Trial 3 & Trial 4\\
 
 \subsection{Experiment 2---Tuning Using the Abbreviated Schedule}
 \label{sub:experiment2}
-The abbreviated schedule is desirable since it is significantly less expensive to compute, has been shown an effective surrogate for full-schedule error, and provides a baseline to which other results can be compared and contextualized. In Experiment 2, we tune the refined and primitive models on hourly electrical usage with the abbreviated schedule. \hl{We then use the four-day tuned models to calculate data for the entire year in order to get a full-schedule SAE that's directly comparable to other experiments. Aaron, please confirm this is correct...it took me a little while to remember this fact with paragraph text saying full-schedule but the caption saying abbreviated schedule.}
+The abbreviated schedule is desirable since it is significantly less expensive to compute, has been shown an effective surrogate for full-schedule error, and provides a baseline to which other results can be compared and contextualized. In Experiment 2, we tune the refined and primitive models on hourly electrical usage with the abbreviated schedule. We then use the four-day tuned models to calculate data for the entire year in order to get a full-schedule SAE that is directly comparable to other experiments.
 
 Table~\ref{tab:hourly-abbrev} presents the final population statistics for full-schedule SAE on each model and trial. In this table, the actual full-schedule data was compared to each of the 16 candidates in the final population for each trial, and the average and minimum SAE values from this comparison are reported. For the refined model, the average minimum yearly SAE achieved by the EC was 5,660 kWh. This corresponds to a reduction of 582 kWh in SAE, which is an almost 10\% reduction from the model, which had an SAE of 6,242 kWh. For the primitive model, the average minimum yearly SAE was 7,453 kWh, which is a reduction of 660 kWh or an 8\% reduction in SAE. This is also a 35\% reduction of the error between the primitive and refined models (8,114 kWh for the primitive and 6,242 kWh for the refined).
 
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{In Experiment 2, the evolutionary computation was used to optimize the primitive and refined models eight independent times (thus, 16 different tunings) using the abbreviated schedule. The final population of 16 individuals for each tuning were used to produce the statistics in this table. The average and minimum $SAE_{hour}$ (kWh) values for electrical usage from the final populations are shown.}
 \label{tab:hourly-abbrev}
@@ -255,7 +255,7 @@ As a means of comparison, this experiment focuses on using the full schedule for
 
 Table~\ref{tab:hourly-full} displays the final population statistics for the full-schedule SAE on each model and trial. As in Table~\ref{tab:hourly-abbrev}, these statistics are the population averages and minimums. For the refined model, the average minimum SAE across eight trials was 5,539 kWh. Compare this error to that of the baseline file (6,242 kWh) and of the abbreviated schedule EC (5,660 kWh). Clearly, using the full schedule throughout the evolution provides a lower error (by 121 kWh) than using the abbreviated schedule. However, this additional 2\% reduction in error beyond that of the abbreviated schedule requires more than five times the computational resources. The abbreviated-schedule EC was able to complete a single trial in about 1.5 hours on an eight-core machine, whereas the full schedule EC required 8 hours on the same machine. For the primitive model, the average minimum SAE across eight trials was 7,162 kWh. Once again, this error must be compared to the baseline file (8,114 kWh) and to the abbreviated-schedule EC (7,453 kWh). Here, there is a reduction of 291 kWh in SAE from the abbreviated schedule, which corresponds to a 4\% reduction for a similar five-fold increase in computational time.
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{In Experiment 3, the evolutionary computation was used to optimize the primitive and refined models eight independent times (thus, 16 different tunings) using the full schedule. The final population of 16 individuals for each tuning were used to produce the statistics in this table. The average and minimum $SAE_{hour}$ (kWh) values for electrical usage from the final populations are shown.}
 \label{tab:hourly-full}
@@ -283,7 +283,7 @@ In this experiment, the first 768 E+ simulations were done using the four-day sc
 Table~\ref{tab:hourly-serial} shows the final population minimums and averages for each trial for both the refined and primitive models. The average minimum SAE for the refined model was 5,581 kWh, and for the primitive model it was 7,343 kWh. As expected, the performance is better than using the abbreviated schedule alone (5,660 kWh and 7,453 kWh for refined and primitive models, respectively), but it is not as good as using the full schedule throughout the evolution (5,539 kWh and 7,162 kWh). The reduction in SAE was 79 kWh for the refined model and 110 kWh for the primitive model, which corresponds to a movement of 66\% and 38\% toward the full schedule performance for each model. This performance comes at a cost of approximately double the computational expense of the abbreviated schedule only (3 hours instead of 1.5 hours), which is less than the five-times-increase of the full schedule (over 8 hours). 
 
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{In Experiment 4, the evolutionary computation was used to optimize the primitive and refined models eight independent times (thus, 16 different tunings) using the abbreviated schedule for the first 75\% of the evaluations and the full schedule for the remaining 25\%. The final population of 16 individuals for each tuning were used to produce the statistics in this table. The average and minimum $SAE_{hour}$ (kWh) values for electrical usage from the final populations are shown.}
 \label{tab:hourly-serial}
@@ -306,7 +306,7 @@ Rather than executing the different evolutionary approaches in serial fashion, i
 
 Table~\ref{tab:hourly-parallel} shows the final population statistics for the candidates from the abbreviated-schedule islands for both primitive and refined models. The average minimum SAE was 5,597 kWh for the refined model and 7,270 kWh for the primitive model. This is very near the performance obtained from the serial evolution. However, the parallel approach has a number of advantages. First, and perhaps most importantly, it makes no assumptions about the number of simulations that will be carried out, so users are free to stop the tuning process at any time. Since the full simulation is always being run on one of the islands, this information is always incorporated in the final population. Second, the parallel approach appears to provide slightly better performance in terms of the SAE-to-full-year-simulation ratio. This is because the actual performance between the two is nearly identical, but the parallel version's full island was unable to make use of particularly good solutions from the abbreviated island until after about the first 25\% of simulations had been run. So, in some sense, it achieved similar error performance using only 75\% of the simulations. This 25\% is an estimate based on the typical convergence of the abbreviated island as shown in Figure~\ref{fig:hour-converge}. This figure plots the convergence of the error of the best refined-model candidate through each generation for each trial of Experiment 4 (up through generation 48, after which the full-schedule information was used). Generation 12 represents the 25\% mark (shown as a dotted line in the figure) of the full 1,024 evaluations.
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{In Experiment 5, an island-model evolutionary computation was used to optimize the primitive and refined models eight independent times (thus, 16 different tunings) using a \emph{slow} and a \emph{fast} island. The final population of 16 individuals for each tuning were used to produce the statistics in this table. The average and minimum $SAE_{hour}$ (kWh) values for electrical usage from the final populations are shown.}
 \label{tab:hourly-parallel}
@@ -323,7 +323,7 @@ Refined   & Min & 5639 & 5597 & 5582 & 5578 & 5580 & 5633 & 5591 & 5573\\
 \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=5in]{figure2}
 \caption{This figure shows the convergence of the best individual in each trial of Experiment 4 when using the abbreviated schedule (i.e., the first 75\% of the evaluations). The dotted line marks generation 12, which is 25\% of the evaluations allotted to the abbreviated schedule. Prior to this point, individuals produced by the abbreviated schedule tuning are not particularly useful as seeds due to their relatively high SAE. After this point, they become much more useful.}
@@ -340,7 +340,7 @@ These experiments have shown that it is possible to use an evolutionary search t
 Experiment 1 verified that a four-day schedule could serve as a viable surrogate for the full-year schedule in terms of hourly electrical usage, producing a correlation coefficient of 0.96 between abbreviated and full schedules. Experiment 2 showed that an abbreviated-only approach was able to reduce the RMSE by 6\% and 7\% below the baseline for the refined and primitive models, respectively. Experiment 3 focused on using the full schedule only, and that approach reduced the RMSE by 7\% (refined) and 10\% (primitive). Experiment 4 combined the two approaches in serial fashion, using the abbreviated schedule for the first 768 simulations and then using the full schedule for the remaining 256. This approach was better than the abbreviated schedule alone, but it performed only slightly worse than the full schedule alone. Finally, Experiment 5 combined the two approaches in parallel using an island model, where one island used the abbreviated schedule and the other used the full schedule. Solutions were able to migrate between the islands, and this approach was competitive with the full schedule approach, despite the fact that it only used 25\% of the full-schedule simulations.
 
 
-\begin{table}[htbp]
+\begin{table}[tbp]
 \centering
 \caption{The summary comparison of results from Experiments 2--5 show that significant reduction can be gained from tuning with an abbreviated schedule, either alone, serially, or in parallel with a full-schedule tuning. Percentages in parentheses are reductions versus the baseline.}
 \label{tab:hourly-summary}
@@ -358,7 +358,7 @@ Parallel    & 5597 (10\%) & 1.121 (7\%) & 7270 (10\%) & 1.482 (9\%)\\
 \end{tabular}
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=5in]{figure3}
 \caption{This figure shows the results of Experiments 2--5 when compared to the baseline (see Table~\ref{tab:hourly-summary}). The average minimum SAE value found across all eight trials is used to represent each method, and each method is accompanied by standard error bars (except for the baseline). The y-axis minimum value was increased to 5,000 in order to highlight the differences between the methods.}
