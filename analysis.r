@@ -11,47 +11,54 @@ e1data = read.table("e1.csv", header=T, sep=",")
 attach(e1data)
 
 p1 <- ggplot(data=e1data, aes(x=e1data[Trial==1, 2], y=e1data[Trial==1, 3])) + 
-      geom_point(colour=cbbPalette[2]) +
+      geom_point(colour=cbbPalette[2], alpha=0.1) +
       theme(panel.background = element_rect(fill = "#FFFFEE")) + 
       theme(plot.background = element_rect(fill = "transparent", colour = NA)) +
       theme(legend.position = "none") + 
-      xlab(expression(paste("Four Day ",SAE[hour]," (kWh)"))) +
+      theme(axis.title.x=element_blank()) +
       ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
-      annotate("text", x=66.1, y=7225, label="R == 0.9697", parse=TRUE, colour="black") + 
-      annotate("text", x=66.2, y=7150, label="R^{2} == 0.9403", parse=TRUE, colour="black") + 
+      annotate("text", x=68, y=7225, label="R == 0.9697", parse=TRUE, colour="black") + 
+      annotate("text", x=68.2, y=7100, label="R^{2} == 0.9403", parse=TRUE, colour="black") + 
+      annotate("text", x=72.5, y=5600, label="Trial 1", colour="black") + 
       stat_smooth(method="lm", se=FALSE, colour="black")
       
-p2 <- ggplot(data=e1data, aes(x=e1data[Trial==3, 2], y=e1data[Trial==3, 3])) + 
-      geom_point(colour=cbbPalette[3]) +
+p2 <- ggplot(data=e1data, aes(x=e1data[Trial==2, 2], y=e1data[Trial==2, 3])) + 
+      geom_point(colour=cbbPalette[3], alpha=0.1) +
       theme(panel.background = element_rect(fill = "#FFFFEE")) + 
       theme(plot.background = element_rect(fill = "transparent", colour = NA)) +
       theme(legend.position = "none") + 
-      xlab(expression(paste("Four Day ",SAE[hour]," (kWh)"))) +
-      ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
-      annotate("text", x=66.5, y=7225, label="R == 0.9704", parse=TRUE, colour="black") + 
-      annotate("text", x=66.6, y=7150, label="R^{2} == 0.9417", parse=TRUE, colour="black") + 
+      theme(axis.title.x=element_blank()) +      
+      theme(axis.title.y=element_blank()) +
+      #xlab(expression(paste("Four Day ",SAE[hour]," (kWh)"))) +
+      #ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
+      annotate("text", x=68, y=7225, label="R == 0.9472", parse=TRUE, colour="black") + 
+      annotate("text", x=68.2, y=7100, label="R^{2} == 0.8972", parse=TRUE, colour="black") + 
+      annotate("text", x=72.5, y=5600, label="Trial 2", colour="black") + 
       stat_smooth(method="lm", se=FALSE, colour="black")
       
-p3 <- ggplot(data=e1data, aes(x=e1data[Trial==2, 2], y=e1data[Trial==2, 3])) + 
-      geom_point(colour=cbbPalette[4]) +
+p3 <- ggplot(data=e1data, aes(x=e1data[Trial==3, 2], y=e1data[Trial==3, 3])) + 
+      geom_point(colour=cbbPalette[4], alpha=0.1) +
       theme(panel.background = element_rect(fill = "#FFFFEE")) + 
       theme(plot.background = element_rect(fill = "transparent", colour = NA)) +
       theme(legend.position = "none") + 
       xlab(expression(paste("Four Day ",SAE[hour]," (kWh)"))) +
       ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
-      annotate("text", x=66.5, y=7225, label="R == 0.9472", parse=TRUE, colour="black") + 
-      annotate("text", x=66.6, y=7150, label="R^{2} == 0.8972", parse=TRUE, colour="black") + 
+      annotate("text", x=68, y=7225, label="R == 0.9704", parse=TRUE, colour="black") + 
+      annotate("text", x=68.2, y=7100, label="R^{2} == 0.9417", parse=TRUE, colour="black") + 
+      annotate("text", x=72.5, y=5600, label="Trial 3", colour="black") + 
       stat_smooth(method="lm", se=FALSE, colour="black")
       
 p4 <- ggplot(data=e1data, aes(x=e1data[Trial==4, 2], y=e1data[Trial==4, 3])) + 
-      geom_point(colour=cbbPalette[6]) +
+      geom_point(colour=cbbPalette[7], alpha=0.1) +
       theme(panel.background = element_rect(fill = "#FFFFEE")) + 
       theme(plot.background = element_rect(fill = "transparent", colour = NA)) +
       theme(legend.position = "none") + 
+      theme(axis.title.y=element_blank()) +
       xlab(expression(paste("Four Day ",SAE[hour]," (kWh)"))) +
-      ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
-      annotate("text", x=66.5, y=7225, label="R == 0.9382", parse=TRUE, colour="black") + 
-      annotate("text", x=66.6, y=7150, label="R^{2} == 0.8802", parse=TRUE, colour="black") + 
+      #ylab(expression(paste("Yearly ",SAE[hour]," (kWh)"))) +
+      annotate("text", x=68, y=7225, label="R == 0.9382", parse=TRUE, colour="black") + 
+      annotate("text", x=68.2, y=7100, label="R^{2} == 0.8802", parse=TRUE, colour="black") + 
+      annotate("text", x=72.5, y=5600, label="Trial 4", colour="black") + 
       stat_smooth(method="lm", se=FALSE, colour="black")
       
 grid.arrange(p1, p2, p3, p4, ncol=2)
@@ -122,6 +129,5 @@ p <- ggplot(sumdata, aes(x=model, y=average, fill=factor(method, as.character(me
     theme(panel.background = element_rect(fill = "#FFFFEE")) + 
     theme(plot.background = element_rect(fill = "transparent", colour = NA)) +
     theme(legend.position=c(0.85, 0.85), legend.background = element_rect(fill="#FFFFEE"))
-
 print(p)
 dev.off()
