@@ -138,13 +138,30 @@ The EnergyPlus whole-building energy simulation engine was consolidated from div
 A typical residential building model in EnergyPlus has approximately 3,000 input parameters that must be specified. The search space in such a problem is extremely large. Even if each parameter were a simple binary value (e.g., a categorical whose values were \emph{yes} or \emph{no}), the search space for a 3,000-parameter building would contain $2^{3000}$ possibilities, which is unfathomably larger than the number of atoms believed to exist in the observable universe (about $2^{270}$). This is a best-case scenario; the actual size of the search space is effectively infinite because many of the parameters are continuous-valued. For this study, we relied on several building simulation experts to identify 156 input parameters, along with minimums and maximums within which they will be varied. Even with this simplification, to solve this problem with brute force would take Titan more than $10^{28}$ lifetimes of the known universe (13.8 billion years) to calculate all the necessary EnergyPlus simulations to find the best model for a single residential building. Many of the experiments in this paper discuss algorithms and methods to find near-optimal models in a tractable amount of time on commodity hardware.
 
 \subsection{Evolutionary Computation}
-A common approach to such search problems, and one that has been successfully applied in previous building model tuning work \cite{cit:garrett2013}, is evolutionary computation (EC). EC \cite{cit:dejong1993,cit:spears1993,cit:fogel1994,cit:fogel2000} is a stochastic search algorithm that attempts to mimic biological evolution by maintaining a set of candidate solutions, referred to as a \emph{population}. Each candidate solution is evaluated to determine its \emph{fitness}, which is a problem-dependent measure of how well it solves the problem \cite{cit:dejong2006}. In essence, the candidate solutions act as samples of the search space, and their fitness values provide an approximation of the gradient. However, unlike strict gradient-based techniques, an EC provides some (typically small) opportunity for less fit candidates to influence the search process, which helps the EC to avoid local optima \cite{cit:michalewicz2004}. 
+A common approach to such search problems, and one that has been successfully applied in previous building model tuning work \cite{cit:garrett2013}, is evolutionary computation (EC). EC \cite{cit:dejong1993,cit:spears1993,cit:fogel1994,cit:fogel2000} is a stochastic search algorithm that attempts to mimic biological evolution by maintaining a set of candidate solutions (see Figure~\ref{fig:chromosome}), referred to as a \emph{population}. Each candidate solution is evaluated to determine its \emph{fitness}, which is a problem-dependent measure of how well it solves the problem \cite{cit:dejong2006}. In essence, the candidate solutions act as samples of the search space, and their fitness values provide an approximation of the gradient. However, unlike strict gradient-based techniques, an EC provides some (typically small) opportunity for less fit candidates to influence the search process, which helps the EC to avoid local optima \cite{cit:michalewicz2004}. 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5in]{graphics/autotune_chromosome}
+\caption{Candidate solutions represent the essential components of the problem that should be optimized. In the building-model-calibration case, the design of a candidate solution progresses as follows: 
+(a) The base model is analyzed to determine optimization variables.
+(b) The optimization variables are isolated.
+(c) The optimization variables are encoded in some structure that can participate in the evolution (known as the \emph{genotype}).}
+\label{fig:chromosome}
+\end{figure}
 
 Since EC is a population-based search, it has a number of aspects that are inherently parallel. Most important for this work, each candidate in the population must be evaluated to determine its fitness, and the evaluation of one candidate is typically independent of the others. For expensive evaluation functions, the ability to determine the fitness values of an entire population simultaneously greatly increases the search efficiency. In addition to parallel evaluations, EC approaches called \emph{island models} \cite{cit:eiben2007} exist that maintain multiple populations, each of which performs parallel evolution. In many cases, each island (i.e., isolated population) is allowed to explore a different region of the search space, possibly in different ways. With most island models, there are mechanisms in place that allow candidate solutions to \emph{migrate} between islands (usually with low frequency), which allows information exchange between the populations.
 
-In the context of this work, a candidate solution is a building with a chromosome represented by a list of building model parameters to be tuned. To evaluate a candidate solution, its corresponding EnergyPlus input data file (IDF) model is constructed and passed to the EnergyPlus simulation engine, producing an entire set of output measures (e.g., heating/cooling loads). These output measures are then compared with actual measured data from the building. The resulting measure of accuracy is used as the fitness value for the candidate solution. % Is ``indicate the fitness'' correct? I wasn't sure what ``used as the fitness'' meant.
+In the context of this work, a candidate solution is a building with a chromosome represented by a list of building model parameters to be tuned. To evaluate a candidate solution, its corresponding EnergyPlus input data file (IDF) model is constructed and passed to the EnergyPlus simulation engine, producing an entire set of output measures (e.g., heating/cooling loads). These output measures are then compared with actual measured data from the building. The resulting measure of accuracy is used as the fitness value for the candidate solution. 
 
-The interaction among candidate solutions in the population drives the evolutionary process, and this interaction is defined in terms of \emph{evolutionary operators}. These operators determine how current solutions are recombined or modified to produce new solutions, as well as which solutions get to contribute information to the next generation. The particular evolutionary operators used in this work were heuristic crossover, Gaussian mutation, tournament selection, and generational replacement. Each of these operators is standard in the EC literature, and all were described previously in \cite{cit:garrett2013}.
+The interaction among candidate solutions in the population drives the evolutionary process, and this interaction is defined in terms of \emph{evolutionary operators}. These operators determine how current solutions are recombined or modified to produce new solutions, as well as which solutions get to contribute information to the next generation. Figure~\ref{fig:crossover} illustrates the basic concept of an evolutionary operator (recombination, in this case). The particular evolutionary operators used in this work were heuristic crossover, Gaussian mutation, tournament selection, and generational replacement. Each of these operators is standard in the EC literature, and all were described previously in \cite{cit:garrett2013}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5in]{graphics/autotune_crossover}
+\caption{Evolution progresses as candidate solutions undergo the effects of evolutionary operators, such as recombination. In this illustration, the two genotypes (blue-yellow-red and yellow-red-blue) are recombined to produce an offspring candidate solution (green-orange-purple). The particular recombination illustrated here through color-mixing is similar to an approach in the EC literature known as \emph{blend crossover}.}
+\label{fig:crossover}
+\end{figure}
 
 
 \section{Methodology}
@@ -201,7 +218,7 @@ The entire set of 1,024 individuals for each of the four trials is plotted in Fi
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=5in]{figure1}
+\includegraphics[width=5in]{graphics/figure1.pdf}
 \caption{Each of the four independent trials shows a very high correlation between 4 day and full-year-schedule SAE of hourly electrical usage. This means that an abbreviated surrogate (4 -day schedule) is a plausible method of expediting the tuning.}
 \label{fig:hour-corr}
 \end{figure}
@@ -307,7 +324,15 @@ Refined   & Min & 5564 & 5586 & 5608 & 5545 & 5596 & 5618 & 5566 & 5563\\
 
 \subsection{Experiment 5---Tuning Using Both Schedules in Parallel}
 \label{sub:experiment5}
-Rather than executing the different evolutionary approaches in serial fashion, it is possible to perform them in parallel using an island-model EC \cite{cit:eiben2007}. In this experiment, two different populations of 16 candidate solutions are maintained. The first (``fast'') island uses the abbreviated schedule for simulation, and the second (``slow'') uses the full-year schedule. At the end of each generation (i.e., each 16 simulations), a one-element migration queue is queried for any existing candidate. If one is found, it replaces the worst candidate in the population. In either case, the best candidate in the population is inserted into the queue. Since both populations perform this migration, this enables solutions to transfer between the populations (or ``islands''). Note that that all immigrant solutions are re-evaluated to determine the fitness under the new simulation approach before they are inserted into the population.
+Rather than executing the different evolutionary approaches in serial fashion, it is possible to perform them in parallel using an island-model EC \cite{cit:eiben2007}. In this experiment, two different populations of 16 candidate solutions are maintained. The first (``fast'') island uses the abbreviated schedule for simulation, and the second (``slow'') uses the full-year schedule. At the end of each generation (i.e., each 16 simulations), a one-element migration queue is queried for any existing candidate. If one is found, it replaces the worst candidate in the population. In either case, the best candidate in the population is inserted into the queue. Since both populations perform this migration, this enables solutions to transfer between the populations (or ``islands''). Note that that all immigrant solutions are re-evaluated to determine the fitness under the new simulation approach before they are inserted into the population. This island-model approach is illustrated in Figure~\ref{fig:islands}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5in]{graphics/autotune_islands}
+\caption{When performing the tuning of both schedules in parallel, two different populations evolve independently. The evolution on each island proceeds by choosing a candidate solution, generating the EnergyPlus model based on that genotype, passing that model through the EnergyPlus simulation, determining the candidate's fitness (represented here by candidate solution size), and finally re-integrating the candidate solution into the population. However, the calculation of the fitness is handled differently on each island. One island (the upper-left) uses the full year schedule (represented by the large EnergyPlus ``black box''), while the other island (the lower-right) uses the abbreviated schedule. Periodically during the evolution, candidate solutions are allowed to migrate between the islands (represented here as winged candidate solutions \emph{en route}). When these candidate solutions arrive at their destination islands, they must be re-evaluated in order to determine their appropriate size (since their current sizes rely on the measure as defined on their home island).}
+\label{fig:islands}
+\end{figure}
+
 
 Table~\ref{tab:hourly-parallel} shows the final population statistics for the candidates from the abbreviated-schedule islands for both primitive and refined models. The average minimum SAE was 5,597 kWh for the refined model and 7,270 kWh for the primitive model. This is very near the performance obtained from the serial evolution. However, the parallel approach has a number of advantages. First, and perhaps most important, it makes no assumptions about the number of simulations that will be carried out, so users are free to stop the tuning process at any time. Since the full simulation is always being run on one of the islands, this information is always incorporated in the final population. Second, the parallel approach appears to provide slightly better performance in terms of the SAE-to-full-year-simulation ratio. This is because the actual performance between the two is nearly identical, but the parallel version's full island was unable to make use of particularly good solutions from the abbreviated island until after about the first 25\% of simulations had been run. So, in some sense, it achieved similar error performance using only 75\% of the simulations. This 25\% is an estimate based on the typical convergence of the abbreviated island as shown in Figure~\ref{fig:hour-converge}. This figure plots the convergence of the error of the best refined-model candidate through each generation for each trial of Experiment 4 (up through generation 48, after which the full-schedule information was used). Generation 12 represents the 25\% mark (shown as a dotted line in the figure) of the full 1,024 evaluations.
 
@@ -330,7 +355,7 @@ Refined   & Min & 5639 & 5597 & 5582 & 5578 & 5580 & 5633 & 5591 & 5573\\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=5in]{figure2}
+\includegraphics[width=5in]{graphics/figure2.pdf}
 \caption{This figure shows the convergence of the best individual in each trial of Experiment 4 when the abbreviated schedule is used (i.e., the first 75\% of the evaluations). The dotted line marks generation 12, which is 25\% of the evaluations allotted to the abbreviated schedule. Before this point, individuals produced by the abbreviated schedule tuning are not particularly useful as seeds because of their relatively high SAE. After this point, they become much more useful.}
 \label{fig:hour-converge}
 \end{figure}
@@ -365,7 +390,7 @@ Parallel    & 5597 (10\%) & 1.121 (7\%) & 7270 (10\%) & 1.482 (9\%)\\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=5in]{figure3}
+\includegraphics[width=5in]{graphics/figure3.pdf}
 \caption{This figure shows the results of Experiments 2--5 compared with the baseline (see Table~\ref{tab:hourly-summary}). The average minimum SAE value found across all eight trials is used to represent each method, and each method is accompanied by standard error bars (except for the baseline). The y-axis minimum value was increased to 5,000 to highlight the differences between the methods.}
 \label{fig:hourly-summary}
 \end{figure}
