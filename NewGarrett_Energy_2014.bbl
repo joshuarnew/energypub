@@ -1,0 +1,135 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{cit:doe2012a}
+{Department of Energy}, Average annual energy expenditures per household, by
+  year, in: Building Energy Data Book, 2012.
+
+\bibitem{cit:earthadvantage2009}
+{Earth Advantage Institute and Conservation Services Group}, Energy performance
+  score 2008 pilot: Findings and recommendations report.
+
+\bibitem{cit:roberts2012}
+D.~Roberts, N.~Merket, B.~Polly, M.~Heahey, S.~Casey, J.~Robertson, Assessment
+  of the u.s. department of energy scoring tool, Tech. rep., National Renewable
+  Energy Laboratory (2012).
+
+\bibitem{cit:ashrae2002}
+{ASHRAE}, Guideline 14-2002: Measurement of Energy and Demand Savings, {ASHRAE}
+  (2002).
+
+\bibitem{cit:doetools2012}
+{Department of Energy Tools}, Building energy software tools directory,
+  available online at
+  \url{http://apps1.eere.energy.gov/buildings/tools_directory/subjects_sub.cfm}
+  (2012).
+
+\bibitem{cit:energyplus}
+{EnergyPlus}, Getting Started with EnergyPlus: Basic Concepts Manual (October
+  2011).
+
+\bibitem{cit:nrel2012}
+{National Renewable Energy Laboratory}, Openstudio: Commercial buildings
+  research and software development, available online at
+  \url{http://openstudio.nrel.gov} (2012).
+
+\bibitem{cit:ashrae2013}
+{ASHRAE}, Handbook of Fundamentals (chapter 26): Heat, Air, and Moisture
+  Control in Building Assemblies – Material Properties, {ASHRAE} (2013).
+
+\bibitem{cit:new2012}
+J.~R. New, J.~Sanyal, M.~S. Bhandari, S.~S. Shrestha, Autotune e+ building
+  energy models, in: Proceedings of the 5th National SimBuild of IBPSA-USA,
+  International Building Performance Simulation Association ({IBPSA}), 2012.
+
+\bibitem{cit:garrett2013}
+A.~Garrett, J.~New, T.~Chandler, Evolutionary tuning of building models to
+  monthly electrical consumption, in: {ASHRAE} Transactions, 2013.
+
+\bibitem{cit:miller2012}
+W.~A. Miller, \href{http://www.zebralliance.org}{{ZEBRAlliance}: An alliance
+  maximizing cost-effective energy efficiency in buildings}, Tech. rep., Oak
+  Ridge National Laboratory (2012).
+\newline\urlprefix\url{http://www.zebralliance.org}
+
+\bibitem{cit:biswas2012}
+K.~Biswas, A.~Gehl, R.~Jackson, P.~Boudreaux, J.~Christian, Comparison of two
+  high-performance energy efficient homes: Annual performance report, Tech.
+  rep., Oak Ridge National Laboratory (2012).
+
+\bibitem{cit:sanyal2013a}
+J.~Sanyal, J.~R. New, Supercomputer assisted generation of machine learning
+  agents for the calibration of building energy models, in: Proceedings of
+  Extreme Science and Engineering Discovery Environment (XSEDE 13), San Diego,
+  CA, 2013.
+
+\bibitem{cit:sanyal2013b}
+J.~Sanyal, J.~R. New, Simulation and big data challenges in tuning building
+  energy models, in: Proceedings of the IEEE Workshop on Modeling and
+  Simulation of Cyber-Physical Energy Systems, Berkeley, CA, 2013.
+
+\bibitem{cit:castello2012}
+C.~C. Castello, J.~R. New, Autonomous correction of sensor data applied to
+  building technologies utilizing statistical processing methods, in:
+  Proceedings of the 2nd Energy Informatics Conference, 2012.
+
+\bibitem{cit:edwards2013}
+R.~E. Edwards, J.~R. New, L.~E. Parker, Constructing large scale energyplus
+  surrogates from big data, Tech. rep., Oak Ridge National Laboratory (2013).
+
+\bibitem{cit:pigg2001}
+S.~Pigg, A rating tale, Home Energy Magazine.
+
+\bibitem{cit:reddy2006}
+T.~A. Reddy, M.~I., S.~Jian, C.~Panjapornporn, Procedures for reconciling
+  computer-calculated results with measured energy data, Tech. rep., ASHRAE
+  (2006).
+
+\bibitem{cit:femp2008}
+{Federal Energy Management Program}, M\&V Guidelines: Measurement and
+  Verification for Federal Energy Projects Version 3.0, {U.S. Department of
+  Energy} (apr 2008).
+
+\bibitem{cit:dejong1993}
+K.~A. {DeJong}, W.~Spears, On the state of evolutionary computation, in:
+  S.~Forrest (Ed.), Proceedings of the Fifth International Conference on
+  Genetic Algorithms, Morgan Kaufman, San Mateo, CA, 1993, pp. 618--623.
+
+\bibitem{cit:spears1993}
+W.~M. Spears, K.~A. {DeJong}, T.~B{\"a}ck, D.~B. Fogel, H.~deGaris, An overview
+  of evolutionary computation, in: Proceedings of the 1993 European Conference
+  on Machine Learning, 1993.
+
+\bibitem{cit:fogel1994}
+D.~B. Fogel, An introduction to simulated evolutionary optimization, {IEEE}
+  Transactions on Neural Networks 5~(1) (1994) 3--14.
+
+\bibitem{cit:fogel2000}
+D.~B. Fogel, What is evolutionary computation?, {IEEE} Spectrum 37~(2) (2000)
+  26--32.
+
+\bibitem{cit:dejong2006}
+K.~A. {DeJong}, Evolutionary Computation: A Unified Approach, {MIT} Press,
+  2006.
+
+\bibitem{cit:michalewicz2004}
+Z.~Michalewicz, D.~B. Fogel, How to Solve It: Modern Heuristics, Springer,
+  2004.
+
+\bibitem{cit:eiben2007}
+A.~E. Eiben, J.~E. Smith, Introduction to Evolutionary Computing, Springer, New
+  York, 2007.
+
+\bibitem{cit:doe2012b}
+{Department of Energy}, Residential sector energy consumption. table 2.1.5, in:
+  Building Energy Data Book, 2012.
+
+\bibitem{cit:doe2012c}
+{Department of Energy}, 2010 residential energy end-use expenditure splits, by
+  fuel type, in: Building Energy Data Book, 2012.
+
+\end{thebibliography}
