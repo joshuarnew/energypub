@@ -9,6 +9,22 @@
 {Department of Energy}, Average annual energy expenditures per household, by
   year, in: Building Energy Data Book, 2012.
 
+\bibitem{cit:doetools2012}
+{Department of Energy Tools}, Building energy software tools directory,
+  available online at
+  \url{http://apps1.eere.energy.gov/buildings/tools_directory/subjects_sub.cfm}
+  (2012).
+
+\bibitem{Chidiac20115037}
+S.~Chidiac, E.~Catania, E.~Morofsky, S.~Foo,
+  \href{http://www.sciencedirect.com/science/article/pii/S0360544211003756}{Effectiveness
+  of single and multiple energy retrofit measures on the energy consumption of
+  office buildings}, Energy 36~(8) (2011) 5037 -- 5052, \{PRES\} 2010.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.energy.2011.05.050}
+  {\path{doi:http://dx.doi.org/10.1016/j.energy.2011.05.050}}.
+\newline\urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0360544211003756}
+
 \bibitem{cit:earthadvantage2009}
 {Earth Advantage Institute and Conservation Services Group}, Energy performance
   score 2008 pilot: Findings and recommendations report.
@@ -21,12 +37,6 @@ D.~Roberts, N.~Merket, B.~Polly, M.~Heahey, S.~Casey, J.~Robertson, Assessment
 \bibitem{cit:ashrae2002}
 {ASHRAE}, Guideline 14-2002: Measurement of Energy and Demand Savings, {ASHRAE}
   (2002).
-
-\bibitem{cit:doetools2012}
-{Department of Energy Tools}, Building energy software tools directory,
-  available online at
-  \url{http://apps1.eere.energy.gov/buildings/tools_directory/subjects_sub.cfm}
-  (2012).
 
 \bibitem{cit:energyplus}
 {EnergyPlus}, Getting Started with EnergyPlus: Basic Concepts Manual (October
@@ -84,15 +94,55 @@ R.~E. Edwards, J.~R. New, L.~E. Parker, Constructing large scale energyplus
 \bibitem{cit:pigg2001}
 S.~Pigg, A rating tale, Home Energy Magazine.
 
-\bibitem{cit:reddy2006}
-T.~A. Reddy, M.~I., S.~Jian, C.~Panjapornporn, Procedures for reconciling
-  computer-calculated results with measured energy data, Tech. rep., ASHRAE
-  (2006).
+\bibitem{Stein2000339}
+J.~R. Stein, A.~Meier,
+  \href{http://www.sciencedirect.com/science/article/pii/S0360544299000729}{Accuracy
+  of home energy rating systems}, Energy 25~(4) (2000) 339 -- 354.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/S0360-5442(99)00072-9}
+  {\path{doi:http://dx.doi.org/10.1016/S0360-5442(99)00072-9}}.
+\newline\urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0360544299000729}
 
 \bibitem{cit:femp2008}
 {Federal Energy Management Program}, M\&V Guidelines: Measurement and
   Verification for Federal Energy Projects Version 3.0, {U.S. Department of
   Energy} (apr 2008).
+
+\bibitem{Strachan2008601}
+P.~Strachan, G.~Kokogiannakis, I.~Macdonald,
+  \href{http://www.sciencedirect.com/science/article/pii/S0360132306003313}{History
+  and development of validation with the esp-r simulation program}, Building
+  and Environment 43~(4) (2008) 601 -- 609, part Special: Building Performance
+  Simulation.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.buildenv.2006.06.025}
+  {\path{doi:http://dx.doi.org/10.1016/j.buildenv.2006.06.025}}.
+\newline\urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0360132306003313}
+
+\bibitem{Murphy2013484}
+G.~B. Murphy, J.~Counsell, J.~Allison, J.~Brindley,
+  \href{http://www.sciencedirect.com/science/article/pii/S0360544213005136}{Calibrating
+  a combined energy systems analysis and controller design method with
+  empirical data}, Energy 57~(0) (2013) 484 -- 494.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.energy.2013.06.015}
+  {\path{doi:http://dx.doi.org/10.1016/j.energy.2013.06.015}}.
+\newline\urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0360544213005136}
+
+\bibitem{vanRuijven2010269}
+B.~van Ruijven, B.~de~Vries, D.~P. van Vuuren, J.~P. van~der Sluijs,
+  \href{http://www.sciencedirect.com/science/article/pii/S0360544209004058}{A
+  global model for residential energy use: Uncertainty in calibration to
+  regional data}, Energy 35~(1) (2010) 269 -- 282.
+\newblock \href
+  {http://dx.doi.org/http://dx.doi.org/10.1016/j.energy.2009.09.019}
+  {\path{doi:http://dx.doi.org/10.1016/j.energy.2009.09.019}}.
+\newline\urlprefix\url{http://www.sciencedirect.com/science/article/pii/S0360544209004058}
+
+\bibitem{cit:reddy2006}
+T.~A. Reddy, M.~I., S.~Jian, C.~Panjapornporn, Procedures for reconciling
+  computer-calculated results with measured energy data, Tech. rep., ASHRAE
+  (2006).
 
 \bibitem{cit:dejong1993}
 K.~A. {DeJong}, W.~Spears, On the state of evolutionary computation, in:
@@ -127,9 +177,5 @@ A.~E. Eiben, J.~E. Smith, Introduction to Evolutionary Computing, Springer, New
 \bibitem{cit:doe2012b}
 {Department of Energy}, Residential sector energy consumption. table 2.1.5, in:
   Building Energy Data Book, 2012.
-
-\bibitem{cit:doe2012c}
-{Department of Energy}, 2010 residential energy end-use expenditure splits, by
-  fuel type, in: Building Energy Data Book, 2012.
 
 \end{thebibliography}

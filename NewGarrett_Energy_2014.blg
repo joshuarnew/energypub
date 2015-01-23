@@ -1,11 +1,11 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: NewGarrett_Energy_2014.aux
 The style file: elsarticle-num.bst
-Illegal, another \bibstyle command---line 115 of file NewGarrett_Energy_2014.aux
+Illegal, another \bibstyle command---line 125 of file NewGarrett_Energy_2014.aux
  : \bibstyle
  :          {model1-num-names}
 I'm skipping whatever remains of this command
 Database file #1: autotune.bib
-Repeated entry---line 305 of file autotune.bib
+Repeated entry---line 410 of file autotune.bib
  : @article{cit:roberts2012
  :                         ,
 I'm skipping whatever remains of this entry
@@ -20,6 +20,4 @@ Warning--empty pages in cit:castello2012
 Warning--empty pages in cit:spears1993
 Warning--empty publisher in cit:doe2012b
 Warning--empty pages in cit:doe2012b
-Warning--empty publisher in cit:doe2012c
-Warning--empty pages in cit:doe2012c
 (There were 2 error messages)
